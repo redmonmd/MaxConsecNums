@@ -1,0 +1,29 @@
+def findMaxConsecutiveOnes(nums) -> int:
+    count = 0
+    high = 0
+    for i in range(len(nums)): 
+        if i == len(nums): 
+            if nums[i] == 1: 
+                count += 1
+            else:
+                continue
+        elif nums[i] == 1:
+                count += 1
+                for j in range(i, i+1): 
+                    if j > i and j < len(nums): 
+                        count += 1
+                    else: 
+                        continue
+        else: 
+                count = 0
+                continue
+        if count > high: 
+            high = count
+    return high
+
+
+# Test Cases
+
+print(findMaxConsecutiveOnes([1,1,0,0,0,1,1,1,1])) # -> 4
+print(findMaxConsecutiveOnes([1,0,0,0,0,0,1,1,1,1,1,1,1,0,0,1,1])) # -> 7
+print(findMaxConsecutiveOnes([1,1,1,1,1,0,0,1,1,1,1,0,0,0,0,0])) # -> 5
